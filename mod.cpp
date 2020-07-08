@@ -1,0 +1,12 @@
+name = "Standing Static Line";
+picture = "logo_ssl_ca.paa";
+actionName = "GitHub";
+action = "https://github.com/ampersand38/";
+description = "Static line paradrop using Vehicle-in-Vehicle to having jumpers stand up in the aircraft.";
+logo = "logo_ssl_ca.paa";
+logoOver = "logo_ssl_ca.paa";
+tooltip = "Ride Where You look";
+tooltipOwned = "Ride Where You look";
+overview = "Static line paradrop using Vehicle-in-Vehicle to having jumpers stand up in the aircraft.";
+author = "Ampersand";
+overviewPicture = "logo_ssl_ca.paa";
