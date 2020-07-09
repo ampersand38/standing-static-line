@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="ssl">
+    <Package name="main">
+        <Key ID="STR_SSL_Main_StandingStaticLine">
+            <English>Standing Static Line</English>
+        </Key>
+        <Key ID="STR_SSL_Main_RigAnchorCables">
+            <English>Rig Anchor Cables</English>
+        </Key>
+        <Key ID="STR_SSL_Main_StowAnchorCables">
+            <English>Stow Anchor Cables</English>
+        </Key>
+        <Key ID="STR_SSL_Main_GetInStanding">
+            <English>Get In Standing</English>
+        </Key>
+        <Key ID="STR_SSL_Main_StandUp">
+            <English>Stand Up</English>
+        </Key>
+        <Key ID="STR_SSL_Main_SitDown">
+            <English>Sit Down</English>
+        </Key>
+        <Key ID="STR_SSL_Main_HookUp">
+            <English>Hook Up</English>
+        </Key>
+        <Key ID="STR_SSL_Main_Unhook">
+            <English>Unhook</English>
+        </Key>
+        <Key ID="STR_SSL_Main_Jump">
+            <English>Static Line Jump</English>
+        </Key>
+        <Key ID="STR_SSL_Main_CheckEquipment">
+            <English>Check Equipment</English>
+        </Key>
+    </Package>
+</Project>

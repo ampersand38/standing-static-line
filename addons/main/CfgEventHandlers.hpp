@@ -15,3 +15,9 @@ class Extended_PostInit_EventHandlers {
         init = QUOTE(call COMPILE_FILE(XEH_postInit));
     };
 };
+
+class Extended_GetOut_EventHandlers {
+    class ssl_proxy_stand {
+        getout = QUOTE(call FUNC(EH_GetOut));
+    };
+};
