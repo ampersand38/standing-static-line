@@ -17,10 +17,8 @@ params ["_vehicle", "", "_unit"];
 
 if ([_unit] call ssl_main_fnc_canJump) then {
     [_unit] call ssl_main_fnc_jump;
-} else {
-    deleteVehicle _vehicle;
-
-    _unit setVariable ["ssl_state", SSL_SITTING, true];
-    _unit setVariable ["ssl_proxy", objNull, true];
-    _unit setVariable ["ssl_aircraft", objNull, true];
 };
+
+deleteVehicle _vehicle;
+_unit setVariable ["ssl_state", SSL_SITTING, true];
+_unit setVariable ["ssl_aircraft", objNull, true];

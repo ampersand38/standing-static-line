@@ -28,9 +28,8 @@ moveOut _unit;
     params ["_aircraft", "_unit"];
     _unit setVariable ["ssl_state", SSL_SITTING, true];
 
-    private _proxy = _unit getVariable ["ssl_proxy", objNull];
+    private _proxy = vehicle _unit;
     deleteVehicle _proxy;
-    _unit setVariable ["ssl_proxy", objNull, true];
 
     private _openSeats = fullcrew [_aircraft,"",true] select {isNull (_x # 0)};
     (_openSeats select (count _openSeats - 1)) params ["", "", "_seatCargoIndex", "_seatTurretPath"];

@@ -32,6 +32,46 @@ _condition = ssl_main_fnc_canGetInStanding;
 _action = ["ssl_main_getInStanding", _displayName, _icon, _statement, _condition, {}, []] call ace_interact_menu_fnc_createAction;
 ["Air", 0, ["ACE_MainActions","ssl_main_StandingStaticLine"], _action, true] call ace_interact_menu_fnc_addActionToClass;
 
+_displayName = localize "STR_SSL_Main_StandUp";
+_icon = "\z\ssl\addons\main\ui\stand_ca.paa";
+_statement = {[_player] call ssl_main_fnc_standUp};
+_condition = {[_player] call ssl_main_fnc_canStandUp};
+_action = ["ssl_main_standUp", _displayName, _icon, _statement, _condition, {}, []] call ace_interact_menu_fnc_createAction;
+["Air", 1, ["ACE_SelfActions","ssl_main_StandingStaticLine"], _action, true] call ace_interact_menu_fnc_addActionToClass;
+
+///////////////////////////////////////////////////////////////////////////////
+// ssl_proxy_stand
+///////////////////////////////////////////////////////////////////////////////
+["ssl_proxy_stand", 1, ["ACE_SelfActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
+
+_displayName = localize "STR_SSL_Main_HookUp";
+_icon = "\a3\3den\Data\CfgWaypoints\hook_ca.paa";
+_statement = {[_player] call ssl_main_fnc_HookUp};
+_condition = {[_player] call ssl_main_fnc_canHookUp};
+_action = ["ssl_main_HookUp", _displayName, _icon, _statement, _condition, {}, []] call ace_interact_menu_fnc_createAction;
+["ssl_proxy_stand", 1, ["ACE_SelfActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
+
+_displayName = localize "STR_SSL_Main_SitDown";
+_icon = "\z\ssl\addons\main\ui\sit_ca.paa";
+_statement = {[_player] call ssl_main_fnc_SitDown};
+_condition = {[_player] call ssl_main_fnc_canSitDown};
+_action = ["ssl_main_SitDown", _displayName, _icon, _statement, _condition, {}, []] call ace_interact_menu_fnc_createAction;
+["ssl_proxy_stand", 1, ["ACE_SelfActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
+
+_displayName = localize "STR_SSL_Main_Jump";
+_icon = "\a3\air_f_beta\Parachute_01\Data\UI\Map_Parachute_01_CA.paa";
+_statement = {[_player] call ssl_main_fnc_Jump};
+_condition = {[_player] call ssl_main_fnc_canJump};
+_action = ["ssl_main_Jump", _displayName, _icon, _statement, _condition, {}, []] call ace_interact_menu_fnc_createAction;
+["ssl_proxy_stand", 1, ["ACE_SelfActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
+
+_displayName = localize "STR_SSL_Main_Unhook";
+_icon = "\a3\3den\Data\CfgWaypoints\unhook_ca.paa";
+_statement = {[_player] call ssl_main_fnc_Unhook};
+_condition = {[_player] call ssl_main_fnc_canUnhook};
+_action = ["ssl_main_Unhook", _displayName, _icon, _statement, _condition, {}, []] call ace_interact_menu_fnc_createAction;
+["ssl_proxy_stand", 1, ["ACE_SelfActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
+
 ///////////////////////////////////////////////////////////////////////////////
 // CAManBase
 ///////////////////////////////////////////////////////////////////////////////
@@ -76,34 +116,3 @@ _statement = ssl_main_fnc_Unhook;
 _condition = ssl_main_fnc_canUnhook;
 _action = ["ssl_main_Unhook", _displayName, _icon, _statement, _condition, {}, []] call ace_interact_menu_fnc_createAction;
 ["CAManBase", 1, ["ACE_SelfActions","ssl_main_StandingStaticLine"], _action, true] call ace_interact_menu_fnc_addActionToClass;
-
-///////////////////////////////////////////////////////////////////////////////
-// ssl_proxy_stand
-///////////////////////////////////////////////////////////////////////////////
-_displayName = localize "STR_SSL_Main_HookUp";
-_icon = "\a3\3den\Data\CfgWaypoints\hook_ca.paa";
-_statement = {[_player] call ssl_main_fnc_HookUp};
-_condition = {[_player] call ssl_main_fnc_canHookUp};
-_action = ["ssl_main_HookUp", _displayName, _icon, _statement, _condition, {}, []] call ace_interact_menu_fnc_createAction;
-["ssl_proxy_stand", 1, ["ACE_SelfActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
-
-_displayName = localize "STR_SSL_Main_SitDown";
-_icon = "\z\ssl\addons\main\ui\sit_ca.paa";
-_statement = {[_player] call ssl_main_fnc_SitDown};
-_condition = {[_player] call ssl_main_fnc_canSitDown};
-_action = ["ssl_main_SitDown", _displayName, _icon, _statement, _condition, {}, []] call ace_interact_menu_fnc_createAction;
-["ssl_proxy_stand", 1, ["ACE_SelfActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
-
-_displayName = localize "STR_SSL_Main_Jump";
-_icon = "\a3\air_f_beta\Parachute_01\Data\UI\Map_Parachute_01_CA.paa";
-_statement = {[_player] call ssl_main_fnc_Jump};
-_condition = {[_player] call ssl_main_fnc_canJump};
-_action = ["ssl_main_Jump", _displayName, _icon, _statement, _condition, {}, []] call ace_interact_menu_fnc_createAction;
-["ssl_proxy_stand", 1, ["ACE_SelfActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
-
-_displayName = localize "STR_SSL_Main_Unhook";
-_icon = "\a3\3den\Data\CfgWaypoints\unhook_ca.paa";
-_statement = {[_player] call ssl_main_fnc_Unhook};
-_condition = {[_player] call ssl_main_fnc_canUnhook};
-_action = ["ssl_main_Unhook", _displayName, _icon, _statement, _condition, {}, []] call ace_interact_menu_fnc_createAction;
-["ssl_proxy_stand", 1, ["ACE_SelfActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;

@@ -18,7 +18,7 @@ params ["_unit"];
 _unit setVariable ["ssl_state", SSL_HOOKEDUP, true];
 
 private _aircraft = _unit getVariable ["ssl_aircraft", objNull];
-private _AnchorCablesInfo = getArray (configFile >> "CfgVehicles" >> typeOf _aircraft >> "SSL_AnchorCablesInfo");
+private _AnchorCablesInfo = [_aircraft] call ssl_main_fnc_GetAnchorCablesInfo;
 if (_AnchorCablesInfo isEqualTo []) exitWith {};
 
 // find nearest anchor cable
@@ -31,6 +31,7 @@ private _anchorCableIndex = _distances findIf {_x == selectMin _distances};
 (_AnchorCablesInfo select _anchorCableIndex) params ["_start", "_end"];
 
 private _anchorCableEnds = _aircraft getVariable ["ssl_AnchorCableEnds", []];
+if (_anchorCableEnds isEqualTo []) exitWith {};
 private _anchorCableEnd = _anchorCableEnds select _anchorCableIndex select 1;
 _unit setVariable ["ssl_anchorCableEnd", _anchorCableEnd, true];
 

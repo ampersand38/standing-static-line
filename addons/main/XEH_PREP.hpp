@@ -14,6 +14,7 @@ PREP(canStowAnchorCables);
 PREP(canUnhook);
 PREP(checkEquipment);
 PREP(EH_GetOut);
+PREP(GetAnchorCablesInfo);
 PREP(getInStanding);
 PREP(hookUp);
 PREP(jump);

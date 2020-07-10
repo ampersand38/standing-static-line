@@ -42,7 +42,7 @@ class CfgVehicles {
         {
             class Cargo {
                 parachuteClass = ""; // Type of parachute used when dropped in air. When empty then parachute is not used.
-                parachuteHeightLimit = 40; // Minimal height above terrain when parachute is used.
+                parachuteHeightLimit = 10000; // Minimal height above terrain when parachute is used.
                 canBeTransported = 1; // 0 (false) / 1 (true)
                 dimensions[] = { "BBox_1_1_pos", "BBox_1_2_pos" }; // Memory-point-based override of automatic bounding box
             };
@@ -90,13 +90,4 @@ class CfgVehicles {
 
     class ace_fastroping_helper;
     class ssl_helper: ace_fastroping_helper {};
-
-    class VTOL_Base_F;
-    class VTOL_01_base_F: VTOL_Base_F {
-        SSL_AnchorCablesInfo[] = {
-            {{-0.6  ,6.5,-3.5},{-0.6  ,-3.5,-3.5},9.99},
-            {{0.2   ,6.5,-3.5},{0.2   ,-3.5,-3.5},9.99},
-            {{1     ,6.5,-3.5},{1     ,-3.5,-3.5},9.99}
-        };
-    };
 };
