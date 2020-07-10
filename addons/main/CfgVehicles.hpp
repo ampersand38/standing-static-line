@@ -26,16 +26,24 @@ class CfgVehicles {
         magazines[] = {};
     };
     class ssl_proxy_stand: ssl_proxy_base {
-        class HeadLimits: HeadLimits {
+        class ViewPilot {
+            initFov = 0.75;
+            minFov = 0.25;
+            maxFov = 1.25;
             initAngleX = 0;
             initAngleY = 0;
-            maxAngleX = 89;
-            maxAngleY = 90;
-            maxAngleZ = 45;
-            minAngleX = -89;
-            minAngleY = -90;
-            minAngleZ = -45;
-            rotZRadius = 0.2;
+            minAngleX = -65;
+            maxAngleX = 85;
+            minAngleY = -150;
+            maxAngleY = 150;
+            minMoveX = -0.2;
+            maxMoveX = 0.2;
+            minMoveY = -0.1;
+            maxMoveY = 0.1;
+            minMoveZ = -0.1;
+            maxMoveZ = 0.2;
+            speedZoomMaxSpeed = 1e+010;
+            speedZoomMaxFOV = 0;
         };
         model = "\z\ssl\addons\main\models\stand.p3d";
         class VehicleTransport
