@@ -22,3 +22,4 @@ if ([_unit] call ssl_main_fnc_canJump) then {
 deleteVehicle _vehicle;
 _unit setVariable ["ssl_state", SSL_SITTING, true];
 _unit setVariable ["ssl_aircraft", objNull, true];
+_unit setVariable ["ssl_proxy", objNull, true];

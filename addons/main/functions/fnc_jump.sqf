@@ -25,21 +25,24 @@ _hook attachTo [_aircraft, _aircraft worldToModelVisual (getPos _anchorCableEnd)
 
 private _velocity = velocity _aircraft;
 _unit hideObjectGlobal true;
+
+if (_useRamp) then {
+    private _proxy = _unit getVariable ["ssl_proxy", objNull];
+    private _rampExit = (getArray (configFile >> "CfgVehicles" >> typeOf _aircraft >> "VehicleTransport" >> "Carrier" >> "exits")) # 0;
+    _proxy attachTo [_aircraft, [0,0,0], _rampExit];
+    detach _proxy;
+    _proxy setVelocity (velocity _aircraft);
+};
 moveOut _unit;
 
 [{
     params ["_aircraft", "_unit"];
     (vehicle _unit == _unit)
 },{
-    params ["_aircraft", "_unit", "_useRamp"];
-    if (_useRamp) then {
-        private _rampExit = (getArray (configFile >> "CfgVehicles" >> typeOf _aircraft >> "VehicleTransport" >> "Carrier" >> "exits")) # 0;
-        _unit attachTo [_aircraft, [0,0,0], _rampExit];
-        detach _unit;
-    };
+    params ["_aircraft", "_unit"];
     _unit setVelocity (velocity _aircraft);
     _unit hideObjectGlobal false;
-}, [_aircraft, _unit, _useRamp]] call CBA_fnc_waitUntilAndExecute;
+}, [_aircraft, _unit]] call CBA_fnc_waitUntilAndExecute;
 
 [{
     params ["_anchorCableEnd", "_unit"];
