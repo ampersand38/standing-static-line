@@ -13,15 +13,33 @@ Perform static line jump
 * [ACE_Player] call ssl_main_fnc_jump
 */
 
-params ["_unit", ["_useRamp", false]];
+params ["_unit", ["_useRamp", true]];
 
 _unit setVariable ["ssl_state", SSL_SITTING, true];
 
-private _anchorCableEnd = _unit getVariable ["ssl_anchorCableEnd", objNull];
-deleteVehicle (_unit getVariable ["ssl_pack", objNull]);
 private _aircraft = _unit getVariable ["ssl_aircraft", objNull];
-private _hook = _unit getVariable ["ssl_hook", objNull];
-_hook attachTo [_aircraft, _aircraft worldToModelVisual (getPos _anchorCableEnd)];
+
+private _anchorCableEnd = _unit getVariable ["ssl_anchorCableEnd", _aircraft];
+if (_anchorCableEnd != _aircraft) then {
+    private _hook = _unit getVariable ["ssl_pack", objNull];
+    if (!isNull _hook) then {
+        deleteVehicle _hook;
+    };
+    private _hook = _unit getVariable ["ssl_hook", objNull];
+    if (!isNull _hook) then {
+        _hook attachTo [_aircraft, _aircraft worldToModelVisual (getPos _anchorCableEnd)];
+    };
+}:
+
+[{
+    params ["_anchorCableEnd", "_unit"];
+    (vehicle _unit == _unit) && {
+    (_anchorCableEnd distance _unit) > 10}
+},{
+    params ["_anchorCableEnd", "_unit"];
+    _unit action ["OpenParachute", _unit];
+
+}, [_anchorCableEnd, _unit]] call CBA_fnc_waitUntilAndExecute;
 
 private _velocity = velocity _aircraft;
 _unit hideObjectGlobal true;
@@ -30,8 +48,6 @@ if (_useRamp) then {
     private _proxy = _unit getVariable ["ssl_proxy", objNull];
     private _rampExit = (getArray (configFile >> "CfgVehicles" >> typeOf _aircraft >> "VehicleTransport" >> "Carrier" >> "exits")) # 0;
     _proxy attachTo [_aircraft, [0,0,0], _rampExit];
-    detach _proxy;
-    _proxy setVelocity (velocity _aircraft);
 };
 moveOut _unit;
 
@@ -43,16 +59,6 @@ moveOut _unit;
     _unit setVelocity (velocity _aircraft);
     _unit hideObjectGlobal false;
 }, [_aircraft, _unit]] call CBA_fnc_waitUntilAndExecute;
-
-[{
-    params ["_anchorCableEnd", "_unit"];
-    (vehicle _unit == _unit) && {
-    (_anchorCableEnd distance _unit) > 10}
-},{
-    params ["_anchorCableEnd", "_unit"];
-    _unit action ["OpenParachute", _unit];
-
-}, [_anchorCableEnd, _unit]] call CBA_fnc_waitUntilAndExecute;
 
 [{
     params ["", "_unit"];
