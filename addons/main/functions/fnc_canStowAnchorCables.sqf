@@ -17,4 +17,6 @@ Check if unit can remove anchor cables on aircraft.
 
 params ["_aircraft", "_unit"];
 
-_aircraft getVariable ["ssl_AnchorCablesReady", false]
+_aircraft getVariable ["ssl_AnchorCablesReady", false] && {
+_aircraft getVariable ["ssl_HookedUpUnits", []] isEqualTo []
+}

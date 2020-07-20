@@ -18,6 +18,10 @@ params ["_unit"];
 _unit setVariable ["ssl_state", SSL_HOOKEDUP, true];
 
 private _aircraft = _unit getVariable ["ssl_aircraft", objNull];
+["ssl_hookUp", [_aircraft, _unit], _aircraft] call CBA_fnc_targetEvent;
+
+if (SSL_ShowRopes < 2) exitWith {};
+
 private _AnchorCablesInfo = [_aircraft] call ssl_main_fnc_GetAnchorCablesInfo;
 if (_AnchorCablesInfo isEqualTo []) exitWith {};
 

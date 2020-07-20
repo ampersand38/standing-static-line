@@ -1,14 +1,18 @@
-/*
-["amp_slingload_localise", {
-    params ["_heli"];
-    private _heliOwner = owner _heli;
-    {
-        if (_heliOwner != owner _x) then {
-            _x setOwner _heliOwner;
-        };
-    } forEach (ropes _heli + ropeAttachedObjects _heli);
+["ssl_hookUp", {
+    params ["_aircraft", "_unit"];
+    private _hookedUpUnits = _aircraft getVariable ["ssl_HookedUpUnits", []];
+    _hookedUpUnits pushBack _unit;
+    _aircraft setVariable ["ssl_HookedUpUnits", _hookedUpUnits, true];
 }] call CBA_fnc_addEventHandler;
 
+["ssl_unhook", {
+    params ["_aircraft", "_unit"];
+    private _hookedUpUnits = _aircraft getVariable ["ssl_HookedUpUnits", []];
+    _hookedUpUnits = _hookedUpUnits - [_unit];
+    _aircraft setVariable ["ssl_HookedUpUnits", _hookedUpUnits, true];
+}] call CBA_fnc_addEventHandler;
+
+/*
 ["amp_slingload_adjustRope", {
     params ["_rope", "_speed", "_length", "_relative"];
     ropeUnwind [_rope, _speed, _length, _relative];

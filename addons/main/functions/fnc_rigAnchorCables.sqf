@@ -20,7 +20,9 @@ params ["_aircraft", "_unit"];
 deleteVehicle ssl_proxy_local;
 _aircraft setVariable ["ssl_AnchorCablesReady", true, true];
 
-// create ropes to look like static line
+if (SSL_ShowRopes < 1) exitWith {};
+
+// create ropes to look like Anchor Cables
 private _AnchorCablesInfo = [_aircraft] call ssl_main_fnc_GetAnchorCablesInfo;
 if (_AnchorCablesInfo isEqualTo []) exitWith {};
 

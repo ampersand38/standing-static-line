@@ -13,11 +13,15 @@ Prepare aircraft ViV space for standing paratroops
 * Example:
 * [_aircraft, _unit] call ssl_main_fnc_stowAnchorCables
 * [cursorObject, ACE_Player] call ssl_main_fnc_stowAnchorCables
+* [(curatorSelected # 0 # 0), ACE_Player] call ssl_main_fnc_stowAnchorCables
 */
 
 params ["_aircraft", ["_unit", objNull]];
 
 _aircraft setVariable ["ssl_AnchorCablesReady", false, true];
+
+if (SSL_ShowRopes < 1) exitWith {};
+
 (_aircraft getVariable ["ssl_AnchorCables", []]) apply {ropeDestroy _x};
 _aircraft setVariable ["ssl_AnchorCables", [], true];
 (_aircraft getVariable ["ssl_AnchorCableEnds", []]) apply {_x apply {deleteVehicle _x};};

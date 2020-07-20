@@ -15,4 +15,9 @@ Check if unit can hook up parachute to static line
 
 params ["_unit"];
 
-(_unit getVariable ["ssl_state", SSL_SITTING] == SSL_STANDING)
+(_unit getVariable ["ssl_state", SSL_SITTING] == SSL_STANDING) && {
+
+private _aircraft = _unit getVariable ["ssl_aircraft", objNull];
+(!isNull _aircraft) && {
+    _aircraft getVariable ["ssl_AnchorCablesReady", false];
+}}
