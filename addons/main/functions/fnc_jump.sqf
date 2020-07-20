@@ -40,7 +40,7 @@ if (_anchorCableEnd != _aircraft) then {
     _unit action ["OpenParachute", _unit];
     systemChat format ["%1 opened parachute", _unit];
 }, [_anchorCableEnd, _unit]] call CBA_fnc_waitUntilAndExecute;
-
+/*
 // unit match velocity with Aircraft
 [{
     params ["", "_unit"];
@@ -49,7 +49,7 @@ if (_anchorCableEnd != _aircraft) then {
     params ["_velocity", "_unit"];
     _unit setVelocity _velocity;
     systemChat format ["%1 left aircraft", _unit];
-}, [_velocity, _unit]] call CBA_fnc_waitUntilAndExecute;
+}, [_velocity, _unit]] call CBA_fnc_waitUntilAndExecute; */
 
 // parachute match velocity with unit
 [{
