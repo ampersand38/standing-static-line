@@ -16,6 +16,9 @@ Perform static line jump
 params ["_unit", ["_useRamp", true]];
 
 private _aircraft = _unit getVariable ["ssl_aircraft", objNull];
+if (isNull _aircraft) exitWith {};
+["ssl_unhook", [_aircraft, _unit], _aircraft] call CBA_fnc_targetEvent;
+
 private _velocity = velocity _aircraft;
 
 private _anchorCableEnd = _unit getVariable ["ssl_anchorCableEnd", _aircraft];
@@ -38,7 +41,7 @@ if (_anchorCableEnd != _aircraft) then {
 },{
     params ["_anchorCableEnd", "_unit"];
     _unit action ["OpenParachute", _unit];
-    systemChat format ["%1 opened parachute", _unit];
+    //systemChat format ["%1 opened parachute", _unit];
 }, [_anchorCableEnd, _unit]] call CBA_fnc_waitUntilAndExecute;
 /*
 // unit match velocity with Aircraft
@@ -58,9 +61,11 @@ if (_anchorCableEnd != _aircraft) then {
 },{
     params ["_velocity", "_unit"];
     vehicle _unit setVelocity _velocity;
-    systemChat format ["%1 is in parachute", _unit];
+    //systemChat format ["%1 is in parachute", _unit];
 }, [_velocity, _unit]] call CBA_fnc_waitUntilAndExecute;
 
-//moveOut _unit;
-_unit setVariable ["ssl_state", 0, true];
-_unit action ["getOut", vehicle _unit];
+_unit setVariable ["ssl_state", SSL_SITTING, true];
+_unit setVariable ["ssl_aircraft", objNull];
+if (vehicle _unit != _unit) then {
+    _unit action ["getOut", vehicle _unit];
+};

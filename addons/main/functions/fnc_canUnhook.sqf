@@ -19,5 +19,7 @@ params ["_unit"];
 
 private _aircraft = _unit getVariable ["ssl_aircraft", objNull];
 (!isNull _aircraft) && {
-    _aircraft getVariable ["ssl_AnchorCablesReady", false];
+    _aircraft getVariable ["ssl_AnchorCablesReady", false] || {
+        _unit in _aircraft
+    }
 }}

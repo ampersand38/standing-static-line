@@ -16,7 +16,15 @@ Unhook static line from anchor cable
 params ["_unit"];
 
 _unit setVariable ["ssl_state", SSL_STANDING, true];
+private _aircraft = _unit getVariable ["ssl_aircraft", objNull];
+if (isNull _aircraft) exitWith {};
 ["ssl_unhook", [_aircraft, _unit], _aircraft] call CBA_fnc_targetEvent;
+
+private _jumpEH = _unit getVariable ["ssl_jumpEH", -1];
+if (_jumpEH > -1) then {
+    _unit removeEventHandler ["GetOutMan", _jumpEH];
+    _unit setVariable ["ssl_jumpEH", -1];
+};
 
 if (SSL_ShowRopes < 2) exitWith {};
 

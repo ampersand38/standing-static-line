@@ -16,6 +16,12 @@ Hook static line to anchor cable
 params ["_unit"];
 
 _unit setVariable ["ssl_state", SSL_HOOKEDUP, true];
+_unit setVariable ["ssl_jumpEH", _unit addEventHandler ["GetOutMan", {
+	params ["_unit", "_role", "_vehicle", "_turret"];
+    _unit removeEventHandler ["GetOutMan", _thisEventHandler];
+    _unit setVariable ["ssl_jumpEH", -1];
+    [_unit] call ssl_main_fnc_jump;
+}]];
 
 private _aircraft = _unit getVariable ["ssl_aircraft", objNull];
 ["ssl_hookUp", [_aircraft, _unit], _aircraft] call CBA_fnc_targetEvent;

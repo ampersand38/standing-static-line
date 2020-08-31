@@ -16,8 +16,11 @@ Check if unit can sit down in cargo seat in aircraft
 params ["_unit"];
 
 (_unit getVariable ["ssl_state", SSL_SITTING] == SSL_STANDING) && {
+    private _aircraft = _unit getVariable ["ssl_aircraft", objNull];
 
-private _aircraft = _unit getVariable ["ssl_aircraft", objNull];
-(!isNull _aircraft) && {
-    (fullcrew [_aircraft,"",true] findIf {isNull (_x # 0)}) >= 0
-}}
+    (!isNull _aircraft) && {
+        _unit in _aircraft || {
+            (fullcrew [_aircraft,"",true] findIf {isNull (_x # 0)}) >= 0
+        }
+    }
+}
