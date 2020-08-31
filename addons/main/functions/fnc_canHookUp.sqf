@@ -16,10 +16,12 @@ Check if unit can hook up parachute to static line
 params ["_unit"];
 
 (_unit getVariable ["ssl_state", SSL_SITTING] == SSL_STANDING) && {
-    private _aircraft = _unit getVariable ["ssl_aircraft", objNull];
-    (!isNull _aircraft) /*&& {
-        _aircraft getVariable ["ssl_AnchorCablesReady", false] || {
-            _unit in _aircraft
-        }
-    }*/
+    (backpack _unit isKindOf "B_Parachute") && {
+        private _aircraft = _unit getVariable ["ssl_aircraft", objNull];
+        (!isNull _aircraft) /*&& {
+            _aircraft getVariable ["ssl_AnchorCablesReady", false] || {
+                _unit in _aircraft
+            }
+        }*/
+    }
 }
