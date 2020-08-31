@@ -17,6 +17,7 @@ params ["_unit"];
 
 private _aircraft = vehicle _unit;
 
+// if aircraft can't ViV
 if (isNil "ssl_proxy_local" || {isNull ssl_proxy_local}) then {
     ssl_proxy_local = "ssl_proxy_stand" createVehicleLocal [0,0,1000];
 };
