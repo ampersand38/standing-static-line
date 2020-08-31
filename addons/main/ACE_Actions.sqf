@@ -1,7 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Air
 ///////////////////////////////////////////////////////////////////////////////
-/*
 private _displayName = localize "STR_SSL_Main_StandingStaticLine";
 private _icon = "\a3\ui_f\data\Map\VehicleIcons\iconParachute_ca.paa";
 private _statement = {};
@@ -39,7 +38,6 @@ _statement = {[_player] call ssl_main_fnc_standUp};
 _condition = {[_player] call ssl_main_fnc_canStandUp};
 _action = ["ssl_main_standUp", _displayName, _icon, _statement, _condition, {}, []] call ace_interact_menu_fnc_createAction;
 ["Air", 1, ["ACE_SelfActions","ssl_main_StandingStaticLine"], _action, true] call ace_interact_menu_fnc_addActionToClass;
-*/
 
 ///////////////////////////////////////////////////////////////////////////////
 // ssl_proxy_stand
