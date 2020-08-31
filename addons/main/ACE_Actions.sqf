@@ -8,7 +8,7 @@ private _condition = ssl_main_fnc_canAccessStaticLineOut;
 private _action = ["ssl_main_StandingStaticLine", _displayName, _icon, _statement, _condition, {}, []] call ace_interact_menu_fnc_createAction;
 ["Air", 0, ["ACE_MainActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
 ["Air", 1, ["ACE_SelfActions"], _action, true] call ace_interact_menu_fnc_addActionToClass;
-
+/*
 _displayName = localize "STR_SSL_Main_RigAnchorCables";
 _icon = "\a3\ui_f\data\Map\VehicleIcons\iconParachute_ca.paa";
 _statement = ssl_main_fnc_RigAnchorCables;
@@ -24,7 +24,7 @@ _condition = ssl_main_fnc_canStowAnchorCables;
 _action = ["ssl_main_StowAnchorCables", _displayName, _icon, _statement, _condition, {}, []] call ace_interact_menu_fnc_createAction;
 ["Air", 0, ["ACE_MainActions","ssl_main_StandingStaticLine"], _action, true] call ace_interact_menu_fnc_addActionToClass;
 ["Air", 1, ["ACE_SelfActions","ssl_main_StandingStaticLine"], _action, true] call ace_interact_menu_fnc_addActionToClass;
-
+*/
 _displayName = localize "STR_SSL_Main_GetInStanding";
 _icon = "\a3\ui_f\data\IGUI\Cfg\simpleTasks\types\getin_ca.paa";
 _statement = ssl_main_fnc_getInStanding;
