@@ -12,6 +12,15 @@
     _aircraft setVariable ["ssl_HookedUpUnits", _hookedUpUnits, true];
 }] call CBA_fnc_addEventHandler;
 
+if (hasInterface) then {
+    ["vehicle", {
+        params ["_unit", "_newVehicle", "_oldVehicle"];
+        if !(_newVehicle isKindOf "ssl_proxy_stand") then {
+            _unit setVariable ["ssl_state", SSL_SITTING, true];
+        };
+    }, true] call CBA_fnc_addPlayerEventHandler;
+};
+
 /*
 ["amp_slingload_adjustRope", {
     params ["_rope", "_speed", "_length", "_relative"];
