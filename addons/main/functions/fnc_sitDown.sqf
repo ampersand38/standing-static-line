@@ -19,6 +19,10 @@ private _aircraft = _unit getVariable ["ssl_aircraft", objNull];
 if (isNull _aircraft) exitWith {};
 _unit setVariable ["ssl_aircraft", objNull, true];
 
+if (_unit in _aircraft) exitWith {
+    _unit setVariable ["ssl_state", SSL_SITTING, true];
+};
+
 moveOut _unit;
 
 [{
@@ -34,6 +38,14 @@ moveOut _unit;
 
     private _openSeats = fullcrew [_aircraft,"",true] select {isNull (_x # 0)};
     (_openSeats select (count _openSeats - 1)) params ["", "", "_seatCargoIndex", "_seatTurretPath"];
+
+    private _moveBackCode = _unit getVariable ["ssl_main_moveBackCode", nil];
+    private _moveBackParams = _unit getVariable ["ssl_main_moveBackParams", nil];
+    if (!isNil "_moveBackCode" && {!isNil "_moveBackParams"}) exitWith {
+        [_unit, _moveBackParams] call _moveBackCode;
+        _unit setVariable ["ssl_main_moveBackCode", nil];
+        _unit setVariable ["ssl_main_moveBackParams", nil];
+    };
 
     //_x params ["_seatOccupant", "_seatRole", "_seatCargoIndex", "_seatTurretPath"];
     switch (true) do {
