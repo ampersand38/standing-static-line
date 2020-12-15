@@ -22,6 +22,7 @@ if (isNull _aircraft) exitWith {};
 private _velocity = velocity _aircraft;
 
 private _anchorCableEnd = _unit getVariable ["ssl_anchorCableEnd", _aircraft];
+private _anchorCableLength = 10 max (boundingBox _anchorCableEnd # 2);
 if (_anchorCableEnd != _aircraft) then {
     private _pack = _unit getVariable ["ssl_pack", objNull];
     if (!isNull _pack) then {
@@ -35,14 +36,21 @@ if (_anchorCableEnd != _aircraft) then {
 
 // open parachute when static line is taut
 [{
-    params ["_anchorCableEnd", "_unit"];
+    params ["_unit", "_anchorCableEnd", "_anchorCableLength"];
     (vehicle _unit == _unit) && {
-    (_anchorCableEnd distance _unit) > 10}
+    (_anchorCableEnd distance _unit) > _anchorCableLength}
 },{
-    params ["_anchorCableEnd", "_unit"];
-    _unit action ["OpenParachute", _unit];
+    params ["_unit"];
+    if (backpack _unit isKindOf "B_Parachute") then {
+        _unit action ["OpenParachute", _unit];
+    } else {
+        private _parachute = SSL_DefaultParachute createVehicle [0, 0, 1000];
+        _parachute setDir (getDir _unit);
+        _parachute setPos (getPos _unit);
+        _unit moveInDriver _parachute;
+    };
     //systemChat format ["%1 opened parachute", _unit];
-}, [_anchorCableEnd, _unit]] call CBA_fnc_waitUntilAndExecute;
+}, [_unit, _anchorCableEnd, _anchorCableLength]] call CBA_fnc_waitUntilAndExecute;
 /*
 // unit match velocity with Aircraft
 [{
