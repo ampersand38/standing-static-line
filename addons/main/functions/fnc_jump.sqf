@@ -44,10 +44,14 @@ if (_anchorCableEnd != _aircraft) then {
     if (backpack _unit isKindOf "B_Parachute") then {
         _unit action ["OpenParachute", _unit];
     } else {
-        private _parachute = SSL_DefaultParachute createVehicle [0, 0, 1000];
+        private _parachute = if (getText (configFile >> "CfgVehicles" >> SSL_DefaultParachute >> "simulation") == "parachute") then {
+            SSL_DefaultParachute createVehicle [0, 0, 1000];
+        } else {
+            "NonSteerable_Parachute_F" createVehicle [0, 0, 1000];
+        };
         _parachute setDir (getDir _unit);
         _parachute setPos (getPos _unit);
-        _unit moveInDriver _parachute;
+        _unit moveInAny _parachute;
     };
     //systemChat format ["%1 opened parachute", _unit];
 }, [_unit, _anchorCableEnd, _anchorCableLength]] call CBA_fnc_waitUntilAndExecute;

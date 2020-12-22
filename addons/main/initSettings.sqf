@@ -12,7 +12,7 @@
     "SSL_DefaultParachute", "EDITBOX",
     ["Default Parachute", "Class name of parachute vehicle to spawn for units without a parachute backpack."],
     "Standing Static Line",
-    "ACE_NonSteerableParachute",
+    "NonSteerable_Parachute_F",
     true, // isGlobal
     {},
     false // needRestart
