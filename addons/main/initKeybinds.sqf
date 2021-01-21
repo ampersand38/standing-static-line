@@ -9,9 +9,11 @@
         }
     };
     if (isNull _aircraft) exitWith {};
-    private _units = (units player - [player]) select {
-        (_x getVariable ["ssl_state", 0]) == 0 && {
-            [_aircraft, _x] call ssl_main_fnc_canGetInStanding
+    private _units = units player select {
+        !isPlayer _x && {
+            (_x getVariable ["ssl_state", 0]) == 0 && {
+                [_aircraft, _x] call ssl_main_fnc_canGetInStanding
+            }
         }
     };
     if (_units isEqualTo []) exitWith {};
@@ -21,7 +23,13 @@
 }, {}, [0, [false, false, false]]] call CBA_fnc_addKeybind; // Default: Unbound
 
 [LSTRING(StandingStaticLine), QGVAR(AIStandUp), [LSTRING(AIStandUp), LSTRING(AIStandUp_Description)], {
-    private _units = (units player - [player]) select {(_x getVariable ["ssl_state", 0]) == 0 && {[_x]call ssl_main_fnc_canstandUp}};
+    private _units = units player select {
+        !isPlayer _x && {
+            (_x getVariable ["ssl_state", 0]) == 0 && {
+                [_x]call ssl_main_fnc_canstandUp
+            }
+        }
+    };
     if (_units isEqualTo []) exitWith {};
     private _unit = _units select (count _units - 1);
     if ([_unit] call ssl_main_fnc_canstandUp) then {
@@ -31,7 +39,11 @@
 }, {}, [0, [false, false, false]]] call CBA_fnc_addKeybind; // Default: Unbound
 
 [LSTRING(StandingStaticLine), QGVAR(AIHookUp), [LSTRING(AIHookUp), LSTRING(AIHookUp_Description)], {
-    private _units = (units player - [player]) select {(_x getVariable ["ssl_state", 0]) == 1};
+    private _units = units player select {
+        !isPlayer _x && {
+            (_x getVariable ["ssl_state", 0]) == 1
+        }
+    };
     if (_units isEqualTo []) exitWith {};
     _units apply {
         if ([_x] call ssl_main_fnc_canHookUp) then {
@@ -42,7 +54,11 @@
 }, {}, [0, [false, false, false]]] call CBA_fnc_addKeybind; // Default: Unbound
 
 [LSTRING(StandingStaticLine), QGVAR(AIJump), [LSTRING(AIJump), LSTRING(AIJump_Description)], {
-    private _units = (units player - [player]) select {(_x getVariable ["ssl_state", 0]) == 2};
+    private _units = units player select {
+        !isPlayer _x && {
+            (_x getVariable ["ssl_state", 0]) == 2
+        }
+    };
     if (_units isEqualTo []) exitWith {};
     private _unit = _units select 0;
     if ([_unit] call ssl_main_fnc_canJump) then {
