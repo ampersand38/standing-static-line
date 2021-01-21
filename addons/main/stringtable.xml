@@ -28,6 +28,36 @@
         <Key ID="STR_SSL_Main_Jump">
             <English>Static Line Jump</English>
         </Key>
+        <Key ID="STR_SSL_Main_AIGetInStanding">
+            <English>AI Get In Standing</English>
+        </Key>
+        <Key ID="STR_SSL_Main_AIGetInStanding_Description">
+            <English>On each keypress order one AI in your group to stand in the cargo hold of the vehicle you are in or are looking at.</English>
+        </Key>
+        <Key ID="STR_SSL_Main_AIStandUp">
+            <English>AI Stand Up</English>
+        </Key>
+        <Key ID="STR_SSL_Main_AIStandUp_Description">
+            <English>On each keypress order one AI in your group to stand up from his seat into the cargo hold.</English>
+        </Key>
+        <Key ID="STR_SSL_Main_AISitDown">
+            <English>AI Sit Down</English>
+        </Key>
+        <Key ID="STR_SSL_Main_AIHookUp">
+            <English>AI Hook Up</English>
+        </Key>
+        <Key ID="STR_SSL_Main_AIHookUp_Description">
+            <English>Order all AI in your group to hook up to the static line.</English>
+        </Key>
+        <Key ID="STR_SSL_Main_AIUnhook">
+            <English>AI Unhook</English>
+        </Key>
+        <Key ID="STR_SSL_Main_AIJump">
+            <English>AI Static Line Jump</English>
+        </Key>
+        <Key ID="STR_SSL_Main_AIJump_Description">
+            <English>On each keypress order one AI in your group to jump out of the aircraft.</English>
+        </Key>
         <Key ID="STR_SSL_Main_CheckEquipment">
             <English>Check Equipment</English>
         </Key>
