@@ -17,12 +17,6 @@ params ["_unit"];
 
 private _aircraft = vehicle _unit;
 
-_aircraft isKindOf "Air" && {
-    (_unit getVariable ["ssl_state", SSL_SITTING] == SSL_SITTING) /*&& {
-    if (isNil "ssl_proxy_local" || {isNull ssl_proxy_local}) then {
-        ssl_proxy_local = "ssl_proxy_stand" createVehicleLocal [0,0,1000];
-    };
-    (_aircraft canVehicleCargo ssl_proxy_local) # 0
-}
-*/
-}
+_aircraft isKindOf "Air" &&
+{_unit getVariable ["ssl_state", SSL_SITTING] == SSL_SITTING} &&
+{_aircraft getCargoIndex _unit > -1}
